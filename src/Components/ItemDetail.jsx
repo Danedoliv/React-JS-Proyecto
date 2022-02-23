@@ -1,9 +1,9 @@
 import React from "react";
 import ItemCount from "./ItemCount";
-import { NavLink } from "react-router-dom";
+import "../ProyectImages.css"
 
 
-export default  function ItemDetail({ item }) {
+ const ItemDetail = ({item}) => {
  
     return (
         <div className="col col-md-6 col-lg-4 my-1"> 
@@ -13,8 +13,11 @@ export default  function ItemDetail({ item }) {
                <h5 className="card-title text-uppercase">{item.name}</h5>
                <h5 className="card-subtitle text-muted text-uppercase">{item.category}</h5>
                <p className="card-text fs-3">${item.price} </p>
-               <ItemCount stock={item.stock} initial={1} item={item}/>
-               <NavLink to="/item/id:" className="btn bg-primary w-100 my-1 text-white text-uppercase">Show detail</NavLink>
+               <div className="my-3">
+             
+            </div>
+               <ItemCount item={item}/>
+           
            </div>
            
         </div>
@@ -23,3 +26,5 @@ export default  function ItemDetail({ item }) {
     )
    
   }
+
+  export default ItemDetail
