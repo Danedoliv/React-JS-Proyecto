@@ -13,6 +13,9 @@ const ItemCount = ({item}) => {
       cantidad,
    }
 
+   const verfCart = (cartverf, item) => {
+       return cartverf.some((a) => a.id === item.id)
+    };
 
    const addToCart = () => {
       if (stock < 0 || cantidad <= 0) return;
@@ -33,7 +36,7 @@ const ItemCount = ({item}) => {
    return (
 
       <div className="container mx-auto my-1">
-         {(cart ,item) ?  (
+         {!verfCart(cart, item) ?  (
       <>
       
      
@@ -53,7 +56,7 @@ const ItemCount = ({item}) => {
 
 
          <div className="row">
-         <button onClick={() => addToCart(item)} className="btn my-2 w-100 bg-primary text-white text-uppercase">Add to Cart</button>
+         <button onClick={() => addToCart(ticket)} className="btn my-2 w-100 bg-primary text-white text-uppercase">Add to Cart</button>
          </div>
          
           </>

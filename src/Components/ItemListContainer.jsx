@@ -26,7 +26,7 @@ return (
         <div className="container-fluid" style={{minHeight:"100vh"}}>
             
            
-           <ItemList items={data, filtered} />
+           <ItemList items={filtered} />
         </div>
     )
 }

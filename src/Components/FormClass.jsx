@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { collection,addDoc } from "firebase/firestore";
 import { CartConsumer } from "../Context/CartProvider";
 import db from "../service"
+import Swal from "sweetalert2";
 
 const Input = ({
   className,
@@ -47,6 +48,16 @@ const FormClass = ({ total, purchase }) => {
         items: purchase,
     });
 
+  const genTicket =  async ({data}) => {
+      try {
+          const col = collection(db,"ordenes")
+          const order =  await addDoc(col,data)
+          console.log(order.id)
+      } catch (error) {
+          console.log(error)
+      }
+    };
+
 const comfirmText = (texts) => {
     return texts.some((text) => text === "")
   }
@@ -60,16 +71,16 @@ const {
   const onSubmit = (e) => {
     e.preventDefault();
     if (comfirmText([email, name, lastname, number])) {
-      alert({
+      Swal.fire({
         title: "Oops!",
-        text: "Need to complete to purchase",
+        text: "Please complete form to proceed",
         icon: "error",
       });
       return;
     }
-    alert({
-      title: "Great!!",
-      text: "Order Purchased!!",
+    Swal.fire({
+      title: "Greatl!",
+      text: "Your ticket is reserved!",
       icon: "success",
     });
     genTicket({ data: form });
@@ -97,15 +108,7 @@ const {
   };
 
 
-const genTicket =  async ({data}) => {
-    try {
-        const col = collection(db,"ordenes")
-        const order =  await addDoc(col,data)
-        console.log(order.id)
-    } catch (error) {
-        console.log(error)
-    }
-  };
+
 
   return (
     <form onSubmit={onSubmit} className="container border">
