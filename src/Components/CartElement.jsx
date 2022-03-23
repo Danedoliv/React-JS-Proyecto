@@ -1,7 +1,7 @@
 import React from "react";
 import { CartConsumer } from "../Context/CartProvider";
 
-const CartElement = ({item:{img,name,stock,price,id}}) => {
+const CartElement = ({item:{img,name,cantidad,price,id}}) => {
 
     const {removeCart} = CartConsumer()
     return (
@@ -15,9 +15,9 @@ const CartElement = ({item:{img,name,stock,price,id}}) => {
               <h5 className="card-title">{name}</h5>
               <div className="row my-2 border">
                   <div className="col col-10 text-uppercase">
-                      Stock
+                      Items
                   </div>
-                  <div className="col col-2">{stock}</div>
+                  <div className="col col-2">{cantidad}</div>
               </div>
               <div className="row my-2 border">
                   <div className="col col-7 text-uppercase">

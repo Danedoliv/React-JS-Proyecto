@@ -10,7 +10,7 @@ export default function ItemList({items}) {
                 item={item}/>
             ))}
             {items.length < 1 && 
-            <h1>No hay resultado...</h1>}
+            <h1>Loading...</h1>}
         </div>
     )
 }

@@ -33,7 +33,7 @@ const CartBody = () => {
       )}
       {cart.length < 1 && (
         <div className="container full-height d-flex align-items-center justify-content-center ">
-          <div className="w-50">
+          <div className="">
             <h3 className="text-center text-primary text-uppercase">
               Empty Cart
             </h3>
