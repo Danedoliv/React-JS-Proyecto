@@ -48,15 +48,7 @@ const FormClass = ({ total, purchase }) => {
         items: purchase,
     });
 
-  const genTicket =  async ({data}) => {
-      try {
-          const col = collection(db,"ordenes")
-          const order =  await addDoc(col,data)
-          console.log(order.id)
-      } catch (error) {
-          console.log(error)
-      }
-    };
+  
 
 const comfirmText = (texts) => {
     return texts.some((text) => text === "")
@@ -64,9 +56,24 @@ const comfirmText = (texts) => {
 
 const [error, setError] = useState({});
 
+
 const {
     buyer: { email, name, lastname, number },
   } = form;
+
+  const genTicket =  async ({data}) => {
+    try {
+        const col = collection(db,"orders")
+        const order =  await addDoc(col,data)
+        setTimeout(() => {
+          Swal.fire({
+          title: `Your order id is: ${order.id}`,
+        }); }, 1000);
+       
+    } catch (error) {
+        console.log(error)
+    }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -79,7 +86,7 @@ const {
       return;
     }
     Swal.fire({
-      title: "Greatl!",
+      title: "Great!",
       text: "Your ticket is reserved!",
       icon: "success",
     });
@@ -112,7 +119,7 @@ const {
 
   return (
     <form onSubmit={onSubmit} className="container border">
-      <h3 className="text-uppercase text-white text-center my-4">Please complete to purchase</h3>
+      <h3 className="text-uppercase text-white text-center my-4">Please complete form to purchase</h3>
       {Object.keys(form.buyer).map((key,index) => (
         <Input
         key={index}
